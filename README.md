@@ -1,2 +1,1 @@
-# Python Adventure
-Python Adventure: The Quest
+# Python Adventure: The Quest
