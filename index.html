@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Explorer Game with Quests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        #game-output {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #333;
+            background-color: white;
+        }
+
+        img {
+            width: 300px;
+            height: auto;
+            margin: 10px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to Python Adventure: The Quest</h1>
+    <div id="game-output"></div>
+    <div id="quests-output"></div>
+
+    <button onclick="movePlayer('north')">Move North</button>
+    <button onclick="movePlayer('south')">Move South</button>
+    <button onclick="movePlayer('east')">Move East</button>
+    <button onclick="movePlayer('west')">Move West</button>
+
+    <script>
+        const world = [
+            ["Forest", "River", "Mountain"],
+            ["Village", "Home", "Desert"],
+            ["Cave", "Beach", "Castle"],
+            ["Loop Garden", "Array Archipelago", "Function Fortress"]
+        ];
+
+        const images = {
+            "Forest": "https://media.istockphoto.com/id/1446199740/nl/foto/path-through-a-sunlit-forest.jpg?s=612x612&w=0&k=20&c=nJine8pNZIZz39Vi-FVgm8dlfOiIubLP1NUNvh_0Y4A=",
+            "River": "https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cml2ZXJ8ZW58MHx8MHx8fDA%3D",
+            "Mountain": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg/800px-Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg",
+            "Village": "https://image.newyork.nl/wp-content/uploads/2010/05/West-Village-New-York.jpeg",
+            "Home": "https://bintihomeblog.com/wp-content/uploads/2022/05/Grijze-bank-combineren-met-kleur-%C2%A9Binti-Home-1-900x635.jpg",
+            "Desert": "https://cdn.pixabay.com/photo/2016/09/08/13/58/desert-1654439_640.jpg",
+            "Cave": "https://i.natgeofe.com/n/f3500942-4eb9-4dfa-b6c9-53cd5510cd46/47789_16x9.jpg?w=1200",
+            "Beach": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3",
+            "Castle": "https://2f1a7f9478.visitscotland.net/binaries/content/gallery/visitscotland/cms-images/2022/09/14/glamis-castle-image.jpg",
+            "Loop Garden": "https://www.botanicgardens.org.au/sites/default/files/2023-07/Venues-Annan-fruit-loop-1584x633.jpg",
+            "Array Archipelago": "https://a.cdn-hotels.com/gdcs/production76/d1699/49b89e7e-0265-4ab0-9ecf-13eb168c8886.jpg",
+            "Function Fortress": "https://media.istockphoto.com/id/637505228/photo/ancient-city-walls-of-avila-spain.jpg?s=612x612&w=0&k=20&c=lnea4FhqYy4HGAV10nmDCqYrt2cecpnxkP1WPGhs5hg="
+        };
+
+        let playerPos = [1, 1];
+        let inventory = [];
+        let completedQuests = [];
+
+        const quests = [
+            {
+                location: "Forest",
+                task: "Solve the math puzzle to get the Magic Stick.",
+                reward: "Magic Stick",
+                mathChallenge: { question: "What is 12 + 7?", answer: 19 }
+            },
+            {
+                location: "Castle",
+                task: "Solve the function puzzle to get the Golden Key.",
+                reward: "Golden Key",
+                mathChallenge: { question: "What is 9 * 6?", answer: 54 }
+            },
+            {
+                location: "Loop Garden",
+                task: "Solve the loop puzzle to get the Loop Wand.",
+                reward: "Loop Wand",
+                mathChallenge: { question: "What is 15 - 6?", answer: 9 }
+            }
+        ];
+
+        function showWorld() {
+            let output = "World Map:<br>";
+            for (let row of world) {
+                output += row.join(" | ") + "<br>";
+            }
+            output += "You are currently at: " + world[playerPos[0]][playerPos[1]] + "<br>";
+            output += `<img src="${images[world[playerPos[0]][playerPos[1]]]}" alt="${world[playerPos[0]][playerPos[1]]}"><br>`;
+            document.getElementById('game-output').innerHTML = output;
+
+            // Show available quests
+            showQuests();  // Call showQuests here
+        }
+
+        function showQuests() {
+            const currentLocation = world[playerPos[0]][playerPos[1]];
+            let questOutput = "Quests at this location:<br>";
+            const availableQuests = quests.filter(quest => quest.location === currentLocation);
+
+            if (availableQuests.length > 0) {
+                availableQuests.forEach((quest, index) => {
+                    questOutput += `${quest.task} <button onclick="startQuest(${index})">Start Quest</button><br>`;
+                });
+            } else {
+                questOutput += "No quests available at this location.<br>";
+            }
+
+            document.getElementById('quests-output').innerHTML = questOutput;
+        }
+
+        function startQuest(questIndex) {
+            const quest = quests[questIndex];
+            const userAnswer = prompt(quest.mathChallenge.question);
+
+            if (parseInt(userAnswer) === quest.mathChallenge.answer) {
+                alert(`Correct! You have received the ${quest.reward}.`);
+                inventory.push(quest.reward);
+                completedQuests.push(quest);
+            } else {
+                alert("Incorrect answer. Try again!");
+            }
+
+            // Update quest list
+            showQuests();
+        }
+
+        function movePlayer(direction) {
+            if (direction === 'north' && playerPos[0] > 0) playerPos[0]--;
+            if (direction === 'south' && playerPos[0] < world.length - 1) playerPos[0]++;
+            if (direction === 'east' && playerPos[1] < world[0].length - 1) playerPos[1]++;
+            if (direction === 'west' && playerPos[1] > 0) playerPos[1]--;
+            showWorld();
+        }
+
+        // Event listener for arrow keys
+        document.addEventListener('keydown', function(event) {
+            switch (event.key) {
+                case "ArrowUp":
+                    movePlayer('north');
+                    break;
+                case "ArrowDown":
+                    movePlayer('south');
+                    break;
+                case "ArrowLeft":
+                    movePlayer('west');
+                    break;
+                case "ArrowRight":
+                    movePlayer('east');
+                    break;
+            }
+        });
+
+        // Initialize the game world display
+        showWorld();
+    </script>
+</body>
+
+</html>
