@@ -1,6 +1,3 @@
-General Business
-
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -13,6 +10,52 @@ General Business
 
     <title>Python Explorer Game with Quests</title>
 
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background-color: #f0f0f0;
+
+            text-align: center;
+
+        }
+
+        #game-output {
+
+            margin-top: 20px;
+
+            padding: 20px;
+
+            border: 2px solid #333;
+
+            background-color: white;
+
+        }
+
+        img {
+
+            width: 300px; /* pas de breedte aan indien nodig */
+
+            height: auto;
+
+            margin: 10px;
+
+        }
+
+        button {
+
+            margin: 5px;
+
+            padding: 10px 20px;
+
+            font-size: 16px;
+
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -21,7 +64,7 @@ General Business
 
     <div id="game-output"></div>
 
-    <div id="quests-output"></div>
+    <div id="quests-output"></div">
 
    
 
@@ -47,9 +90,39 @@ General Business
 
             ["Cave", "Beach", "Castle"],
 
-            ["Loop Garden", "Array Archipelago", "Function Fortress"]
+           ["Loop Garden", "Array Archipelago", "Function Fortress"]
 
         ];
+
+ 
+
+        const images = {
+
+            "Forest": https://www.google.com/search?sca_esv=cd649ae873aa4223&sca_upv=1&rlz=1C1VDKB_nlBE1019BE1021&sxsrf=ADLYWIJv2pd-RPUC8JRlDtZ7748OAb1IYA:1727425982382&q=forest+foto&udm=2&fbs=AEQNm0A6bwEop21ehxKWq5cj-cHaxUZOSO72WoU7KkLyB7O1BBVOWnG_fwlCX9sUS03MS9OnxWUMSSLx6yB4KrJy3b6n9WE-d7iuDbio_dL47wroLCOEDSusSAn3Cji-saVMr2qRVEdKgnWGvYc_vH3l_kW3pRO25bORnlDXI9689JAepn_dqAY&sa=X&ved=2ahUKEwiwvrig2-KIAxWPh_0HHWSZBaAQtKgLegQIEBAB&biw=1707&bih=898&dpr=1.5#vhid=xiu_f-JQA-aZ4M&vssid=mosaic,
+
+            "River": https://www.google.com/search?q=river+foto&sca_esv=cd649ae873aa4223&sca_upv=1&rlz=1C1VDKB_nlBE1019BE1021&udm=2&biw=1707&bih=898&sxsrf=ADLYWIIDkBUElZDY4pfoz-AdtpKkDaMrQw%3A1727425984024&ei=wG32ZtSLAc2E9u8PrNnysAs&ved=0ahUKEwjU65yh2-KIAxVNgv0HHaysHLYQ4dUDCBA&uact=5&oq=river+foto&gs_lp=Egxnd3Mtd2l6LXNlcnAiCnJpdmVyIGZvdG8yBhAAGAcYHjIIEAAYBRgHGB4yBBAAGB4yBhAAGAcYHjIGEAAYBxgeMgYQABgHGB4yBhAAGAcYHjIGEAAYBxgeMgYQABgHGB4yBhAAGAcYHkipFlD3C1jIFHADeACQAQCYAakBoAGbBaoBAzMuM7gBA8gBAPgBAZgCB6AC1APCAgcQABiABBgTwgIIEAAYExgHGB7CAgYQABgTGB7CAggQABgTGAUYHsICCBAAGBMYCBgemAMAiAYBkgcDNS4yoAeOHg&sclient=gws-wiz-serp#vhid=5Q0OPPCsRVhfxM&vssid=mosaic,
+
+            "Mountain": https://www.google.com/search?q=moutain+foto&sca_esv=cd649ae873aa4223&sca_upv=1&rlz=1C1VDKB_nlBE1019BE1021&udm=2&biw=1707&bih=898&sxsrf=ADLYWIJufXRAKJVCeVojL5AGQAko_q9xzw%3A1727426020244&ei=5G32Zs2wDtL-7_UPkcrumAQ&ved=0ahUKEwjNsr-y2-KIAxVS_7sIHRGlG0MQ4dUDCBA&uact=5&oq=moutain+foto&gs_lp=Egxnd3Mtd2l6LXNlcnAiDG1vdXRhaW4gZm90b0iRHlDOB1jFHHACeACQAQCYAYUBoAHTC6oBAzYuOLgBA8gBAPgBAZgCB6ACwwTCAgQQABgewgIGEAAYBxgewgIIEAAYgAQYsQPCAgUQABiABMICBxAAGIAEGBPCAggQABgTGAcYHsICCBAAGAcYCBgemAMAiAYBkgcDMy40oAftLQ&sclient=gws-wiz-serp#vhid=gGYVcPikwleu5M&vssid=mosaic,
+
+            "Village": https://www.google.com/search?q=village+foto&sca_esv=cd649ae873aa4223&sca_upv=1&rlz=1C1VDKB_nlBE1019BE1021&udm=2&biw=1707&bih=898&sxsrf=ADLYWIJa_rgFC6JqTEh_ZbIpeYgb_X-YQA%3A1727426080790&ei=IG72ZuvwL6br7_UP3vuJ4Aw&ved=0ahUKEwjrgK_P2-KIAxWm9bsIHd59AswQ4dUDCBA&uact=5&oq=village+foto&gs_lp=Egxnd3Mtd2l6LXNlcnAiDHZpbGxhZ2UgZm90bzIIEAAYBRgHGB4yBBAAGB4yBhAAGAUYHjIGEAAYBRgeMgYQABgFGB4yBhAAGAUYHjIGEAAYBRgeMgYQABgFGB4yBhAAGAUYHjIGEAAYBRgeSKUOUIcFWKANcAJ4AJABAJgBfqABwAaqAQMzLjW4AQPIAQD4AQGYAgagAvQEwgIHEAAYgAQYE8ICCBAAGBMYBxgewgIGEAAYBxgemAMA4gMFEgExIECIBgGSBwMyLjSgB6sq&sclient=gws-wiz-serp#vhid=AN2QRXcClTxzpM&vssid=mosaic,
+
+            "Home": https://www.google.com/search?q=home+woonkamer+foto&sca_esv=cd649ae873aa4223&sca_upv=1&rlz=1C1VDKB_nlBE1019BE1021&udm=2&biw=1707&bih=898&sxsrf=ADLYWIIwDs9hrs2E03SU17NL0dxjzQRpFQ%3A1727426143480&ei=X272Zsn6HMi49u8PmrfPgAY&ved=0ahUKEwiJpqHt2-KIAxVInP0HHZrbE2AQ4dUDCBA&uact=5&oq=home+woonkamer+foto&gs_lp=Egxnd3Mtd2l6LXNlcnAiE2hvbWUgd29vbmthbWVyIGZvdG9I_RNQoANYlhJwAngAkAEAmAF_oAHZCKoBAzYuNbgBA8gBAPgBAZgCBKACvwLCAgcQABiABBgTwgIIEAAYExgHGB7CAgQQIxgnwgIKEAAYExgFGAcYHsICCBAAGAcYCBgemAMAiAYBkgcDMi4yoAf-Eg&sclient=gws-wiz-serp#vhid=Ed_JBi4Pq0dckM&vssid=mosaic,
+
+            "Desert": https://www.google.com/search?q=desert+foto&sca_esv=cd649ae873aa4223&sca_upv=1&rlz=1C1VDKB_nlBE1019BE1021&udm=2&biw=1707&bih=898&sxsrf=ADLYWIImtxp3bR23gzYennpWHr95qmcdhw%3A1727426152847&ei=aG72ZqewM9yI9u8Pw7S72As&ved=0ahUKEwinhN3x2-KIAxVchP0HHUPaDrsQ4dUDCBA&uact=5&oq=desert+foto&gs_lp=Egxnd3Mtd2l6LXNlcnAiC2Rlc2VydCBmb3RvMgYQABgHGB4yBhAAGAcYHjIGEAAYBxgeMggQABgFGAcYHjIIEAAYBRgHGB4yCBAAGAcYCBgeMggQABgHGAgYHjIIEAAYBxgIGB4yCBAAGAcYCBgeMggQABgHGAgYHkiTD1ClCFjzDXABeACQAQCYAYYBoAGQBaoBAzIuNLgBA8gBAPgBAZgCBKACsQPCAgoQABiABBhDGIoFmAMAiAYBkgcDMi4yoAekJw&sclient=gws-wiz-serp#vhid=JXp4sVDD0U3dRM&vssid=mosaic,
+
+            "Cave": https://www.google.com/search?q=cave+foto&sca_esv=cd649ae873aa4223&sca_upv=1&rlz=1C1VDKB_nlBE1019BE1021&udm=2&biw=1707&bih=898&sxsrf=ADLYWIIPM7Z5cI4Aoi6pzFCwK1MM--kEWw%3A1727426212118&ei=pG72Zq3zBt669u8P3NWkyAc&ved=0ahUKEwit1f6N3OKIAxVenf0HHdwqCXkQ4dUDCBA&uact=5&oq=cave+foto&gs_lp=Egxnd3Mtd2l6LXNlcnAiCWNhdmUgZm90bzIGEAAYBxgeMgYQABgFGB4yBhAAGAgYHjIGEAAYBxgeMgYQABgHGB4yCBAAGAUYBxgeMgYQABgFGB4yBhAAGAUYHjIGEAAYBRgeMgYQABgIGB5I_Q5Q0wdY0wdwAHgAkAEAmAHOAaABpgKqAQUxLjAuMbgBA8gBAPgBAZgCAqACrALCAgQQIxgnmAMAiAYBkgcFMS4wLjGgB8QH&sclient=gws-wiz-serp#vhid=lUDfrrD96qURtM&vssid=mosaic,
+
+            "Beach": https://www.google.com/search?q=beach+foto&sca_esv=cd649ae873aa4223&sca_upv=1&rlz=1C1VDKB_nlBE1019BE1021&udm=2&biw=1707&bih=898&sxsrf=ADLYWIJn7TO4KrQxCOl6ZtGVwejX2XodLg%3A1727426215212&ei=p272ZorBDJCF9u8PtqCy6Ac&ved=0ahUKEwjKsLuP3OKIAxWQgv0HHTaQDH0Q4dUDCBA&uact=5&oq=beach+foto&gs_lp=Egxnd3Mtd2l6LXNlcnAiCmJlYWNoIGZvdG8yBRAAGIAEMgUQABiABDIGEAAYBxgeMggQABgFGAcYHjIIEAAYBRgHGB4yCBAAGAUYBxgeMgQQABgeMgQQABgeMgYQABgFGB4yBhAAGAUYHkinDVCyBVj5C3ACeACQAQCYAY0BoAGlBaoBAzIuNLgBA8gBAPgBAZgCCKACvgXCAgYQABgIGB7CAgcQABiABBgTwgIIEAAYExgHGB6YAwCIBgGSBwMyLjagB5Qi&sclient=gws-wiz-serp#vhid=jWYc3Ln3GiEzbM&vssid=mosaic,
+
+            "Castle": https://www.google.com/search?sca_esv=cd649ae873aa4223&sca_upv=1&rlz=1C1VDKB_nlBE1019BE1021&sxsrf=ADLYWILXKpoWIVrEwabewupVo1BCtIOByA:1727426247171&q=castle+foto&udm=2&fbs=AEQNm0A6bwEop21ehxKWq5cj-cHaxUZOSO72WoU7KkLyB7O1BLPwnsqUQoH7cGimAlpV3w1-yBjpg35HpX2ySbUvN7X4uN6e3mXpiiSGczz1FTPkxryh8HvymQ2xyXxuHxED4UQgM9Lcp8QGILOVOYlluh6PsDneNCeY0Sl5mWoXAOth0XX48tM&sa=X&ved=2ahUKEwjpjNqe3OKIAxUShv0HHVZwJCcQtKgLegQIGBAB&biw=1707&bih=898&dpr=1.5#vhid=pR9yPBlHzS8CSM&vssid=mosaic,
+
+            "Loop Garden": https://www.google.com/search?q=loop+garden+foto&sca_esv=cd649ae873aa4223&sca_upv=1&rlz=1C1VDKB_nlBE1019BE1021&udm=2&biw=1707&bih=898&sxsrf=ADLYWIK6f04NNKsF-YGaB-rOZLespn0yQw%3A1727426248961&ei=yG72ZuerOt6F9u8P-MedgAs&ved=0ahUKEwjnr8ef3OKIAxXegv0HHfhjB7AQ4dUDCBA&uact=5&oq=loop+garden+foto&gs_lp=Egxnd3Mtd2l6LXNlcnAiEGxvb3AgZ2FyZGVuIGZvdG9IiRpQzwVY5xRwA3gAkAEAmAGLAaABxQqqAQM1Lji4AQPIAQD4AQGYAgigAqsEwgIGEAAYBxgewgIGEAAYBRgewgIFEAAYgATCAgcQABiABBgTwgIIEAAYBxgIGB7CAgYQABgIGB7CAgQQABgemAMAiAYBkgcDNS4zoAf8Gw&sclient=gws-wiz-serp#vhid=rb6QCuIIamW02M&vssid=mosaic,
+
+            "Array Archipelago": https://www.google.com/search?sca_esv=cd649ae873aa4223&sca_upv=1&rlz=1C1VDKB_nlBE1019BE1021&sxsrf=ADLYWIKuiY9N2vgZ1JAR0vVnX50oesdD4A:1727426290913&q=array+archipelago+foto&udm=2&fbs=AEQNm0A6bwEop21ehxKWq5cj-cHaxUZOSO72WoU7KkLyB7O1BBVOWnG_fwlCX9sUS03MS9OnxWUMSSLx6yB4KrJy3b6nP_WwiabE5PP-QHnr1ndj1nlZE-HHme3_U48pMU1xvo-VKsRnrBnQl7LYGs-9ht4ivAR_1B5tsD4v5E3ZCGAobMOcFzI&sa=X&ved=2ahUKEwiT48ez3OKIAxU4gf0HHbr1EDAQtKgLegQIDxAB&biw=1707&bih=898&dpr=1.5#imgrc=DUe99kECLXvdyM&imgdii=meV7tr5qPiJjGM,
+
+            "Function Fortress": https://www.google.com/search?q=fortress+foto&sca_esv=cd649ae873aa4223&sca_upv=1&rlz=1C1VDKB_nlBE1019BE1021&udm=2&biw=1707&bih=898&sxsrf=ADLYWIInCbiUF33H8mk-s0MRNvG8ob72QA%3A1727426292591&ei=9G72ZtriI-qC9u8P5cCT6Aw&ved=0ahUKEwjarK603OKIAxVqgf0HHWXgBM0Q4dUDCBA&uact=5&oq=fortress+foto&gs_lp=Egxnd3Mtd2l6LXNlcnAiDWZvcnRyZXNzIGZvdG8yBhAAGAgYHjIGEAAYCBgeMgYQABgIGB5I_zJQmhFY7jFwBHgAkAEAmAGCAaABnAqqAQM0Lji4AQPIAQD4AQGYAgGgAnSYAwCIBgGSBwMwLjGgB8QG&sclient=gws-wiz-serp#vhid=CS-1c1OkmLl2QM&vssid=mosaic
+
+        };
 
  
 
@@ -65,11 +138,41 @@ General Business
 
         const quests = [
 
-            { location: "Forest", task: "Solve the math puzzle to get the Magic Stick.", reward: "Magic Stick" },
+            {
 
-            { location: "Castle", task: "Solve the function puzzle to get the Golden Key.", reward: "Golden Key" },
+                location: "Forest",
 
-            { location: "Loop Garden", task: "Solve the loop puzzle to get the Loop Wand.", reward: "Loop Wand" }
+                task: "Solve the math puzzle to get the Magic Stick.",
+
+                reward: "Magic Stick",
+
+                mathChallenge: { question: "What is 12 + 7?", answer: 19 }
+
+            },
+
+            {
+
+                location: "Castle",
+
+                task: "Solve the function puzzle to get the Golden Key.",
+
+                reward: "Golden Key",
+
+                mathChallenge: { question: "What is 9 * 6?", answer: 54 }
+
+            },
+
+            {
+
+                location: "Loop Garden",
+
+                task: "Solve the loop puzzle to get the Loop Wand.",
+
+                reward: "Loop Wand",
+
+                mathChallenge: { question: "What is 15 - 6?", answer: 9 }
+
+            }
 
         ];
 
@@ -83,11 +186,13 @@ General Business
 
             for (let row of world) {
 
-                output += row.join(" | ") + "<br>";
+                output += row.join(" | ") + "<br>";
 
             }
 
             output += "You are currently at: " + world[playerPos[0]][playerPos[1]] + "<br>";
+
+            output += `<img src="${images[world[playerPos[0]][playerPos[1]]]}" alt="${world[playerPos[0]][playerPos[1]]}"><br>`;
 
             document.getElementById('game-output').innerHTML = output;
 
@@ -117,7 +222,7 @@ General Business
 
                     questOutput += quest.task + "<br>";
 
-                    questOutput += "<button onclick='completeQuest(\"" + quest.location + "\", \"" + quest.reward + "\")'>Complete Quest</button><br>";
+                    questOutput += "<button onclick='startQuest(\"" + quest.location + "\", \"" + quest.reward + "\", " + quest.mathChallenge.answer + ")'>Start Quest</button><br>";
 
                 });
 
@@ -133,15 +238,15 @@ General Business
 
  
 
-        // Complete a quest and get rewards
+        // Start a quest with a math challenge
 
-        function completeQuest(location, reward) {
+        function startQuest(location, reward, correctAnswer) {
 
-            const currentLocation = world[playerPos[0]][playerPos[1]];
+            const userAnswer = prompt("To complete the quest, answer the following question:\nWhat is " + quests.find(q => q.location === location).mathChallenge.question);
 
  
 
-            if (location === currentLocation && !completedQuests.includes(location)) {
+            if (parseInt(userAnswer) === correctAnswer) {
 
                 inventory.push(reward);
 
@@ -149,19 +254,15 @@ General Business
 
                 alert("Quest completed! You received: " + reward);
 
-            } else if (completedQuests.includes(location)) {
-
-                alert("You have already completed this quest!");
-
             } else {
 
-                alert("You are not at the correct location to complete this quest.");
+                alert("Incorrect answer. Try again later!");
 
             }
 
  
 
-            // Refresh the world and quests
+            // Refresh the world and quests
 
             showWorld();
 
@@ -201,7 +302,7 @@ General Business
 
  
 
-        // Start the game
+        // Start the game
 
         showWorld();
 
