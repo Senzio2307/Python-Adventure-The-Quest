@@ -1,0 +1,521 @@
+Python 3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)] on win32
+>>> # Python Explorer game with more worlds and programming puzzles
+>>>
+>>>
+>>>
+>>> # Define the world grid with multiple "worlds"
+>>>
+>>> world = [
+...
+...     ["Forest", "River", "Mountain"],
+...
+...     ["Village", "Home", "Desert"],
+...
+...     ["Cave", "Beach", "Castle"],
+...
+...     ["Loop Garden", "Array Archipelago", "Function Fortress"]
+...
+... ]
+>>>
+>>>
+>>>
+>>> player_pos = [1, 1]  # Starting at 'Home'
+>>>
+>>> inventory = []  # Collect items after solving puzzles
+>>>
+>>>
+>>>
+>>> def show_world():
+...
+  File "<stdin>", line 2
+
+    ^
+IndentationError: expected an indented block after function definition on line 1
+>>>     print("\nWorld Map:")
+  File "<stdin>", line 1
+    print("\nWorld Map:")
+IndentationError: unexpected indent
+>>>
+>>>     for row in world:
+  File "<stdin>", line 1
+    for row in world:
+IndentationError: unexpected indent
+>>>
+>>>         print(" | ".join(row))
+  File "<stdin>", line 1
+    print(" | ".join(row))
+IndentationError: unexpected indent
+>>>
+>>>     print("\nYou are currently at:", world[player_pos[0]][player_pos[1]])
+  File "<stdin>", line 1
+    print("\nYou are currently at:", world[player_pos[0]][player_pos[1]])
+IndentationError: unexpected indent
+>>>
+>>>
+>>>
+>>> def move_player(direction):
+...
+  File "<stdin>", line 2
+
+    ^
+IndentationError: expected an indented block after function definition on line 1
+>>>     if direction == "north" and player_pos[0] > 0:
+  File "<stdin>", line 1
+    if direction == "north" and player_pos[0] > 0:
+IndentationError: unexpected indent
+>>>
+>>>         player_pos[0] -= 1
+  File "<stdin>", line 1
+    player_pos[0] -= 1
+IndentationError: unexpected indent
+>>>
+>>>     elif direction == "south" and player_pos[0] < len(world) - 1:
+  File "<stdin>", line 1
+    elif direction == "south" and player_pos[0] < len(world) - 1:
+IndentationError: unexpected indent
+>>>
+>>>         player_pos[0] += 1
+  File "<stdin>", line 1
+    player_pos[0] += 1
+IndentationError: unexpected indent
+>>>
+>>>     elif direction == "east" and player_pos[1] < len(world[0]) - 1:
+  File "<stdin>", line 1
+    elif direction == "east" and player_pos[1] < len(world[0]) - 1:
+IndentationError: unexpected indent
+>>>
+>>>         player_pos[1] += 1
+  File "<stdin>", line 1
+    player_pos[1] += 1
+IndentationError: unexpected indent
+>>>
+>>>     elif direction == "west" and player_pos[1] > 0:
+  File "<stdin>", line 1
+    elif direction == "west" and player_pos[1] > 0:
+IndentationError: unexpected indent
+>>>
+>>>         player_pos[1] -= 1
+  File "<stdin>", line 1
+    player_pos[1] -= 1
+IndentationError: unexpected indent
+>>>
+>>>     else:
+  File "<stdin>", line 1
+    else:
+IndentationError: unexpected indent
+>>>
+>>>         print("You can't move in that direction!")
+  File "<stdin>", line 1
+    print("You can't move in that direction!")
+IndentationError: unexpected indent
+>>>
+>>>
+>>>
+>>> def coding_challenge(location):
+...
+  File "<stdin>", line 2
+
+    ^
+IndentationError: expected an indented block after function definition on line 1
+>>>     if location == "Forest":
+  File "<stdin>", line 1
+    if location == "Forest":
+IndentationError: unexpected indent
+>>>
+>>>         print("\nYou've encountered a puzzle in the Forest!")
+  File "<stdin>", line 1
+    print("\nYou've encountered a puzzle in the Forest!")
+IndentationError: unexpected indent
+>>>
+>>>         print("Solve this to get a magic stick.")
+  File "<stdin>", line 1
+    print("Solve this to get a magic stick.")
+IndentationError: unexpected indent
+>>>
+>>>         print("Puzzle: What is the output of this Python code?")
+  File "<stdin>", line 1
+    print("Puzzle: What is the output of this Python code?")
+IndentationError: unexpected indent
+>>>
+>>>         print("code: x = 3 + 5 * 2 \nprint(x)")
+  File "<stdin>", line 1
+    print("code: x = 3 + 5 * 2 \nprint(x)")
+IndentationError: unexpected indent
+>>>
+>>>         answer = input("Enter your answer: ")
+  File "<stdin>", line 1
+    answer = input("Enter your answer: ")
+IndentationError: unexpected indent
+>>>
+>>>         if answer == "13":
+  File "<stdin>", line 1
+    if answer == "13":
+IndentationError: unexpected indent
+>>>
+>>>             print("Correct! You found a magic stick.")
+  File "<stdin>", line 1
+    print("Correct! You found a magic stick.")
+IndentationError: unexpected indent
+>>>
+>>>             inventory.append("Magic Stick")
+  File "<stdin>", line 1
+    inventory.append("Magic Stick")
+IndentationError: unexpected indent
+>>>
+>>>         else:
+  File "<stdin>", line 1
+    else:
+IndentationError: unexpected indent
+>>>
+>>>             print("Wrong! Try solving the puzzle later.")
+  File "<stdin>", line 1
+    print("Wrong! Try solving the puzzle later.")
+IndentationError: unexpected indent
+>>>
+>>>     elif location == "Castle":
+  File "<stdin>", line 1
+    elif location == "Castle":
+IndentationError: unexpected indent
+>>>
+>>>         print("\nYou've encountered a puzzle in the Castle!")
+  File "<stdin>", line 1
+    print("\nYou've encountered a puzzle in the Castle!")
+IndentationError: unexpected indent
+>>>
+>>>         print("Solve this to get the Golden Key.")
+  File "<stdin>", line 1
+    print("Solve this to get the Golden Key.")
+IndentationError: unexpected indent
+>>>
+>>>         print("Puzzle: What will this function return?")
+  File "<stdin>", line 1
+    print("Puzzle: What will this function return?")
+IndentationError: unexpected indent
+>>>
+>>>         print("code: \ndef mystery(x):\n    return x * 2\n\nresult = mystery(4)\nprint(result)")
+  File "<stdin>", line 1
+    print("code: \ndef mystery(x):\n    return x * 2\n\nresult = mystery(4)\nprint(result)")
+IndentationError: unexpected indent
+>>>
+>>>         answer = input("Enter your answer: ")
+  File "<stdin>", line 1
+    answer = input("Enter your answer: ")
+IndentationError: unexpected indent
+>>>
+>>>         if answer == "8":
+  File "<stdin>", line 1
+    if answer == "8":
+IndentationError: unexpected indent
+>>>
+>>>             print("Correct! You found the Golden Key.")
+  File "<stdin>", line 1
+    print("Correct! You found the Golden Key.")
+IndentationError: unexpected indent
+>>>
+>>>             inventory.append("Golden Key")
+  File "<stdin>", line 1
+    inventory.append("Golden Key")
+IndentationError: unexpected indent
+>>>
+>>>         else:
+  File "<stdin>", line 1
+    else:
+IndentationError: unexpected indent
+>>>
+>>>             print("Wrong answer. Try again later.")
+  File "<stdin>", line 1
+    print("Wrong answer. Try again later.")
+IndentationError: unexpected indent
+>>>
+>>>     elif location == "Loop Garden":
+  File "<stdin>", line 1
+    elif location == "Loop Garden":
+IndentationError: unexpected indent
+>>>
+>>>         print("\nYou are in the Loop Garden!")
+  File "<stdin>", line 1
+    print("\nYou are in the Loop Garden!")
+IndentationError: unexpected indent
+>>>
+>>>         print("Solve this puzzle to unlock the Loop Wand.")
+  File "<stdin>", line 1
+    print("Solve this puzzle to unlock the Loop Wand.")
+IndentationError: unexpected indent
+>>>
+>>>         print("Puzzle: What does this loop do?")
+  File "<stdin>", line 1
+    print("Puzzle: What does this loop do?")
+IndentationError: unexpected indent
+>>>
+>>>         print("code: \nfor i in range(5):\n    print(i)")
+  File "<stdin>", line 1
+    print("code: \nfor i in range(5):\n    print(i)")
+IndentationError: unexpected indent
+>>>
+>>>         answer = input("Enter your answer: ")
+  File "<stdin>", line 1
+    answer = input("Enter your answer: ")
+IndentationError: unexpected indent
+>>>
+>>>         if answer == "0 1 2 3 4" or answer == "0 1 2 3 4 ":
+  File "<stdin>", line 1
+    if answer == "0 1 2 3 4" or answer == "0 1 2 3 4 ":
+IndentationError: unexpected indent
+>>>
+>>>             print("Correct! You found the Loop Wand.")
+  File "<stdin>", line 1
+    print("Correct! You found the Loop Wand.")
+IndentationError: unexpected indent
+>>>
+>>>             inventory.append("Loop Wand")
+  File "<stdin>", line 1
+    inventory.append("Loop Wand")
+IndentationError: unexpected indent
+>>>
+>>>         else:
+  File "<stdin>", line 1
+    else:
+IndentationError: unexpected indent
+>>>
+>>>             print("Not quite! Try again later.")
+  File "<stdin>", line 1
+    print("Not quite! Try again later.")
+IndentationError: unexpected indent
+>>>
+>>>     elif location == "Array Archipelago":
+  File "<stdin>", line 1
+    elif location == "Array Archipelago":
+IndentationError: unexpected indent
+>>>
+>>>         print("\nYou've arrived at the Array Archipelago!")
+  File "<stdin>", line 1
+    print("\nYou've arrived at the Array Archipelago!")
+IndentationError: unexpected indent
+>>>
+>>>         print("Solve this to gain the Array Map.")
+  File "<stdin>", line 1
+    print("Solve this to gain the Array Map.")
+IndentationError: unexpected indent
+>>>
+>>>         print("Puzzle: What will be the output of the following code?")
+  File "<stdin>", line 1
+    print("Puzzle: What will be the output of the following code?")
+IndentationError: unexpected indent
+>>>
+>>>         print("code: \narr = [3, 6, 9]\narr.append(12)\nprint(arr)")
+  File "<stdin>", line 1
+    print("code: \narr = [3, 6, 9]\narr.append(12)\nprint(arr)")
+IndentationError: unexpected indent
+>>>
+>>>         answer = input("Enter your answer: ")
+  File "<stdin>", line 1
+    answer = input("Enter your answer: ")
+IndentationError: unexpected indent
+>>>
+>>>         if answer == "[3, 6, 9, 12]":
+  File "<stdin>", line 1
+    if answer == "[3, 6, 9, 12]":
+IndentationError: unexpected indent
+>>>
+>>>             print("Correct! You found the Array Map.")
+  File "<stdin>", line 1
+    print("Correct! You found the Array Map.")
+IndentationError: unexpected indent
+>>>
+>>>             inventory.append("Array Map")
+  File "<stdin>", line 1
+    inventory.append("Array Map")
+IndentationError: unexpected indent
+>>>
+>>>         else:
+  File "<stdin>", line 1
+    else:
+IndentationError: unexpected indent
+>>>
+>>>             print("Incorrect! Try again later.")
+  File "<stdin>", line 1
+    print("Incorrect! Try again later.")
+IndentationError: unexpected indent
+>>>
+>>>     elif location == "Function Fortress":
+  File "<stdin>", line 1
+    elif location == "Function Fortress":
+IndentationError: unexpected indent
+>>>
+>>>         print("\nYou've reached the Function Fortress!")
+  File "<stdin>", line 1
+    print("\nYou've reached the Function Fortress!")
+IndentationError: unexpected indent
+>>>
+>>>         print("Solve this to unlock the Function Shield.")
+  File "<stdin>", line 1
+    print("Solve this to unlock the Function Shield.")
+IndentationError: unexpected indent
+>>>
+>>>         print("Puzzle: What will this function return?")
+  File "<stdin>", line 1
+    print("Puzzle: What will this function return?")
+IndentationError: unexpected indent
+>>>
+>>>         print("code: \ndef add(a, b):\n    return a + b\n\nresult = add(5, 7)\nprint(result)")
+  File "<stdin>", line 1
+    print("code: \ndef add(a, b):\n    return a + b\n\nresult = add(5, 7)\nprint(result)")
+IndentationError: unexpected indent
+>>>
+>>>         answer = input("Enter your answer: ")
+  File "<stdin>", line 1
+    answer = input("Enter your answer: ")
+IndentationError: unexpected indent
+>>>
+>>>         if answer == "12":
+  File "<stdin>", line 1
+    if answer == "12":
+IndentationError: unexpected indent
+>>>
+>>>             print("Correct! You found the Function Shield.")
+  File "<stdin>", line 1
+    print("Correct! You found the Function Shield.")
+IndentationError: unexpected indent
+>>>
+>>>             inventory.append("Function Shield")
+  File "<stdin>", line 1
+    inventory.append("Function Shield")
+IndentationError: unexpected indent
+>>>
+>>>         else:
+  File "<stdin>", line 1
+    else:
+IndentationError: unexpected indent
+>>>
+>>>             print("Not quite! Try again later.")
+  File "<stdin>", line 1
+    print("Not quite! Try again later.")
+IndentationError: unexpected indent
+>>>
+>>>     else:
+  File "<stdin>", line 1
+    else:
+IndentationError: unexpected indent
+>>>
+>>>         print(f"No coding challenges here at the {location}.")
+  File "<stdin>", line 1
+    print(f"No coding challenges here at the {location}.")
+IndentationError: unexpected indent
+>>>
+>>>
+>>>
+>>> def game_loop():
+...
+  File "<stdin>", line 2
+
+    ^
+IndentationError: expected an indented block after function definition on line 1
+>>>     print("Welcome to Python Explorer! Type 'help' to see commands.")
+  File "<stdin>", line 1
+    print("Welcome to Python Explorer! Type 'help' to see commands.")
+IndentationError: unexpected indent
+>>>
+>>>
+>>>
+>>>     while True:
+  File "<stdin>", line 1
+    while True:
+IndentationError: unexpected indent
+>>>
+>>>         show_world()
+  File "<stdin>", line 1
+    show_world()
+IndentationError: unexpected indent
+>>>
+>>>         print("\nInventory:", inventory)
+  File "<stdin>", line 1
+    print("\nInventory:", inventory)
+IndentationError: unexpected indent
+>>>
+>>>         command = input("What do you want to do? (move/help/inventory/exit): ").lower()
+  File "<stdin>", line 1
+    command = input("What do you want to do? (move/help/inventory/exit): ").lower()
+IndentationError: unexpected indent
+>>>
+>>>
+>>>
+>>>         if command == "exit":
+  File "<stdin>", line 1
+    if command == "exit":
+IndentationError: unexpected indent
+>>>
+>>>             print("Thanks for playing!")
+  File "<stdin>", line 1
+    print("Thanks for playing!")
+IndentationError: unexpected indent
+>>>
+>>>             break
+  File "<stdin>", line 1
+    break
+IndentationError: unexpected indent
+>>>
+>>>         elif command == "help":
+  File "<stdin>", line 1
+    elif command == "help":
+IndentationError: unexpected indent
+>>>
+>>>             print("Commands: 'move north/south/east/west', 'inventory', 'exit'.")
+  File "<stdin>", line 1
+    print("Commands: 'move north/south/east/west', 'inventory', 'exit'.")
+IndentationError: unexpected indent
+>>>
+>>>             print("Visit different locations to find coding puzzles.")
+  File "<stdin>", line 1
+    print("Visit different locations to find coding puzzles.")
+IndentationError: unexpected indent
+>>>
+>>>         elif command.startswith("move"):
+  File "<stdin>", line 1
+    elif command.startswith("move"):
+IndentationError: unexpected indent
+>>>
+>>>             _, direction = command.split()
+  File "<stdin>", line 1
+    _, direction = command.split()
+IndentationError: unexpected indent
+>>>
+>>>             move_player(direction)
+  File "<stdin>", line 1
+    move_player(direction)
+IndentationError: unexpected indent
+>>>
+>>>             current_location = world[player_pos[0]][player_pos[1]]
+  File "<stdin>", line 1
+    current_location = world[player_pos[0]][player_pos[1]]
+IndentationError: unexpected indent
+>>>
+>>>             coding_challenge(current_location)
+  File "<stdin>", line 1
+    coding_challenge(current_location)
+IndentationError: unexpected indent
+>>>
+>>>         elif command == "inventory":
+  File "<stdin>", line 1
+    elif command == "inventory":
+IndentationError: unexpected indent
+>>>
+>>>             print("Your inventory contains:", inventory)
+  File "<stdin>", line 1
+    print("Your inventory contains:", inventory)
+IndentationError: unexpected indent
+>>>
+>>>         else:
+  File "<stdin>", line 1
+    else:
+IndentationError: unexpected indent
+>>>
+>>>             print("Unknown command. Type 'help' for a list of commands.")
+  File "<stdin>", line 1
+    print("Unknown command. Type 'help' for a list of commands.")
+IndentationError: unexpected indent
+>>>
+>>>
+>>>
+>>> # Start the extended game
+>>>
+>>> game_loop()
